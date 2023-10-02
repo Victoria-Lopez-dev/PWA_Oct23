@@ -18,14 +18,19 @@
             text-decoration: underline;
         }
     </style>
-    <h1 class="titulo">Repaso</h1>
-    <h2 id="subtitulo" onclick="info(this)">Subtitulo</h2>
-    <h2 class="titulo">otro titulo</h2>
-    <form action="/ruta_a_donde_mandar_data" method="post" onsubmit="mostrar(event)">
-        <label for="">Dato</label>
-        <input type="text" name="" id="">
-        <input type="submit" value="click" >
-    </form>
+    <header>
+        <h1 class="titulo">Repaso</h1>
+        <h2 id="subtitulo" onclick="info(this)">Subtitulo</h2>
+    </header>
+    <section>
+        <h2 class="titulo">otro titulo</h2>
+        <form action="/ruta_a_donde_mandar_data" method="post" onsubmit="mostrar(event)">
+            <label for="">Dato</label>
+            <input type="text" name="" id="">
+            <input type="submit" value="click" >
+        </form>        
+    </section>
+  
     <script src="./script.js"></script>
 </body>
 </html>

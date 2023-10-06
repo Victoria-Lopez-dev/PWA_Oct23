@@ -17,12 +17,16 @@ Bootstrap - Angular
 # npx create-react-app nombre-proyecto
 para que cree una plantilla de un proyecto en react
 
+# npm install | npm i
+
+comando para que tome la lista de las dependencias del package.json y cargue todos los paquetes
+
 # React
 libreria, que usa componentes y el uso del DOM y react DOM
 en un HTML vayamos agregando y sacando componentes por mediod el DOM 
 Utilizando JSX(lenguaje que mezcla HTML y JS) armamos los componentes y vamos indicandole como se convinan entre si
 
-## Clase miercoles 4/10
+## Clase Viernes 6/10
 
 Repaso de React
 Typescript

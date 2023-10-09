@@ -63,3 +63,4 @@ console.log(medico);
 //usar atributos como metodos
 //se aplican en clases
 //permiten o impiden (public o private) que la instancia tenga acceso a esa informacion o a esa accion,metodo
+//impiden que se puedan cambiar los valores de los atributos (readonly)

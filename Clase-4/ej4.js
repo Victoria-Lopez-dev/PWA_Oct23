@@ -33,7 +33,7 @@
 /* para crear la instancia de recepcionista y veterinaria utilizamos la informacion final del PDF */
 let pacientesPorAtender = []; //lo escribimos de otra manera para acordarnos de otra posibilidad
 const historialP = [];
-const gastosPaciente = []; //lista de medicamentos del paciente
+let gastosPaciente = []; //lista de medicamentos del paciente
 // molde superclase
 class PersonaVete {
     constructor(edadR, usuarioR, correoR) {
@@ -53,15 +53,22 @@ class Recepcion extends PersonaVete {
         pacientesPorAtender.push(paciente);
     }
     agregarPacienteHistorial(paciente) {
-        pacientesPorAtender.push(paciente);
+        historialP.push(paciente);
     }
-    cobrarConsulta(consulta = 1000, cantMedicamento) {
+    cobrarConsulta(id, consulta = 1000) {
         let total = 0;
-        if (cantMedicamento !== 0) {
-            total = cantMedicamento * 800;
+        let paciente = historialP.find((animal) => animal.idAnimal === id);
+        if (paciente !== undefined) {
+            let cantMedicamento = paciente.medicacion.length;
+            if (cantMedicamento !== 0) {
+                total = cantMedicamento * 800;
+            }
+            total = total + consulta;
+            console.log("el total a pagar es de:$ " + total);
+            paciente.medicacion = [];
         }
-        total = total + consulta;
-        console.log("el total a pagar es de:$ " + total);
+        //let ultimoIndice=gastosPacientes.length -1
+        // gastosPacientes.splice(0,ultimoIndice)
     }
 }
 //molde Veterinaria (subclase de PersonaVete)
@@ -94,32 +101,111 @@ class Veterinaria extends PersonaVete {
         //si lo encuentra,modificamos la informacion
         if (paciente !== undefined) {
             //paciente.propiedadPaciente = info;
-            if (propiedadPaciente === "vacunasAplicadas") {
-                paciente.vacunasAplicadas.push(info);
+            switch (propiedadPaciente) {
+                case "nombreAnimal":
+                    paciente.nombreAnimal = info;
+                    break;
+                case "tipo":
+                    paciente.tipo = info;
+                    break;
+                case "raza":
+                    paciente.raza = info;
+                    break;
+                case "propietario":
+                    paciente.propietario = info;
+                    break;
+                case "ingreso":
+                    paciente.ingreso = info;
+                    break;
+                case "notas":
+                    paciente.notas = info;
+                    break;
+                default:
+                    paciente.vacunasAplicadas.push(info);
+                    break;
             }
-            else {
-                paciente[propiedadPaciente] = info;
-            }
+            /* if(propiedadPaciente === "vacunasAplicadas"){
+               paciente.vacunasAplicadas.push(info);
+             }else{
+             paciente[propiedadPaciente]=info //a typescript no le gusto la antigua manera de llamar propiedades de Objetos como parametros de tipo string
+            }*/
         }
         else {
             console.log("no se encuentra el paciente en el historial");
         }
     }
+    indicarGastoExtra(listaMed, id) {
+        let paciente = historialP.find((animal) => animal.idAnimal === id);
+        //alternativa utilizando spread operator
+        if (paciente !== undefined) {
+            paciente.medicacion.push(...listaMed);
+        }
+        //alternativa utilizando spread operator
+        //gastosPaciente=[...listaMed]
+        /* alternativa
+        listaMed.forEach((medicacion)=>{
+            gastosPaciente.push(medicacion)
+        })
+        */
+    }
 }
-/*
-
-type Animal={
-    nombreAnimal:string
-    tipo:string
-    raza:string
-    propietario:string
-    ingreso:number
-    notas:string
-    vacunasAplicadas:string[]//Array <string>
-}
-
-- Indicar lo que se debe facturar ( si solo consulta o si se agregan medicamentos)
-*/
+//instancias de la clases (entidades)
+//Recepcion : Sandra y  Juan
+const recepSandra = new Recepcion(40, "sandraOtaz", "sandraotaz@recepcion.com", ["Lunes", "Miércoles", "Viernes"]);
+console.log(recepSandra);
+//ejecucion metodos de Recepcion
+recepSandra.ingresarPaciente("Firulais");
+console.log(pacientesPorAtender);
+const animal1 = {
+    idAnimal: 2,
+    nombreAnimal: "Michifus",
+    tipo: "gato",
+    raza: "mestizo",
+    propietario: "Juanito",
+    ingreso: 2022,
+    notas: "primera visita",
+    vacunasAplicadas: ["vacuna3"],
+    medicacion: []
+};
+const animal2 = {
+    idAnimal: 3,
+    nombreAnimal: "Chico",
+    tipo: "perro",
+    raza: "mestizo",
+    propietario: "Laura",
+    ingreso: 2018,
+    notas: "ninguna...",
+    vacunasAplicadas: ["antirabia"],
+    medicacion: []
+};
+recepSandra.agregarPacienteHistorial({
+    idAnimal: 1,
+    nombreAnimal: "Firulais",
+    tipo: "perro",
+    raza: "golden",
+    propietario: "Pedrita",
+    ingreso: 2020,
+    notas: "ninguna...",
+    vacunasAplicadas: ["vacuna1", "antirabia"],
+    medicacion: []
+});
+recepSandra.agregarPacienteHistorial(animal1);
+console.log(historialP);
+// let cantidad:number=gastosPaciente.length
+recepSandra.cobrarConsulta(2);
+// instancia de  Veterinaria
+const veteAle = new Veterinaria(52, "alejandraRuiz", "alejandraRuiz@veterinaria.com");
+//Ejecucion de metodos de Veterinaria 
+console.log(veteAle);
+veteAle.atenderPaciente("Firulais");
+//console.log(pacientesPorAtender)
+veteAle.agregarInfo(2, 'raza', "egipcio");
+//console.log(historialP)
+veteAle.indicarGastoExtra(["medicamento1", "medicamento2"], 2);
+console.log(gastosPaciente);
+//prueba de ejecucion de cobro con medicamentos
+recepSandra.cobrarConsulta(2);
+//----------------------------------------------------------------------
 //objetos
 //objeto.propiedad =valor
 // alternativa si pasamos la propiedad como un string objeto['propiedad'] = valor

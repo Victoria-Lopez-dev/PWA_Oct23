@@ -2,6 +2,7 @@
 //string
 //number
 //boolean
+//any
 //array ->Array <tipo|tipo> | (tipo|tipo)[];
 //molde del objeto
 

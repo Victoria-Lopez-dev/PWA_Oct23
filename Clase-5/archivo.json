@@ -1,0 +1,13 @@
+[{
+    "nombre":"remera",
+    "precio":20000
+},{
+    "nombreProd":"pantalon",
+    "precio":24000,
+    "descuento":1000
+},
+{
+    "nombre":"pantalon",
+    "precio":24000,
+    "marca":["bla","bla2"]
+}]

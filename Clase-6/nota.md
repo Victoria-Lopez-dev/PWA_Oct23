@@ -60,6 +60,10 @@ ALTER TABLE nombreTabla DROP COLUMN campo
 # primary key
 
 hacer que un campo funcione como referencia 
+
+Ejemplo
+legajo INT(5) PRIMARY KEY AUTO_INCREMENT=11111;
+legajo INT(5) PRIMARY KEY AUTO_INCREMENT;
 ## Comandos DML
 
 # agregar info a la tabla
@@ -72,7 +76,7 @@ INSERT INTO nombreTabla(campos)VALUES(registro),(registro)
 # modificar info de una tabla
 
 
-UPDATE nombreTabla SET campo=valor WHERE  campo=valor;
+UPDATE nombreTabla SET campo=nuevVvalor WHERE  campoReferencia=valorReferencia;
 
 Ejemplo:
 

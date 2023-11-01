@@ -55,7 +55,7 @@ https://www.mongodb.com/docs/manual/reference/method/js-database/
 
 
 ## notas
-Se pasa para el Martes 7/11 19hs taller de typescript(ejercitacion)
+Se pasa para el Martes 7/11 19hs taller (optativo ) de typescript(ejercitacion)
 
 La profe se compromete a hoy terminar de cargar notas/devoluciones
 

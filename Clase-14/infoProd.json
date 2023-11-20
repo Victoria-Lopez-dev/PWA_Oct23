@@ -1,0 +1,16 @@
+[{
+    "producto":"remera",
+    "precio":20
+},{
+    "producto":"pantalon",
+    "precio":100
+},{
+    "producto":"buzo",
+    "precio":100
+},{
+    "producto":"zapatillas",
+    "precio":100
+},{
+    "producto":"medias",
+    "precio":100
+}]

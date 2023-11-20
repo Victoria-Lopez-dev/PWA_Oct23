@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <%- include('../partials/meta.ejs') %>
+    <title>Clase 14</title>
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <h1>Usando EJS</h1>
+    <h2>Lista de alumnos</h2>
+    <ul class="listaAl">
+        <% listaAlumnos.forEach((alumno)=>{ %>
+            <li><%= alumno %></li>
+        <% }) %>
+    </ul>
+    <img src="./images/radio.png" alt="radio"/>
+
+    <%- include("../partials/form.ejs") %>
+</body>
+</html>

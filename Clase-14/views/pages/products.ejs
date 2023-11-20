@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/meta.ejs') %>
+<title><%= titulo %></title>
+</head>
+<body>
+    <%- include('../partials/nav.ejs') %>
+    <h1><%= tituloH1 %></h1>
+    <% for(let item of data){ %>
+        <div>
+            <p><%= item.producto%></p>
+            <p><%= item.precio%></p>            
+        </div>
+
+    <% }%>
+</body>
+</html>

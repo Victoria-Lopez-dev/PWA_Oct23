@@ -1,4 +1,5 @@
 //coneccion a la DB relacional
+//import mysql2 from 'mysql2'
 const mysql2=require('mysql2');
 const infoDB={
     host:'localhost',

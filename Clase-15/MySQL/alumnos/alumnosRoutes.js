@@ -1,4 +1,4 @@
-// import express from 'express'; otra manera de llamar a los paquetes y modulos
+// import express from 'express';// otra manera de llamar a los paquetes y modulos
 //import {todosLosAlumnos,cargarAlumno} from './alumnosController'
 
 const express=require('express');

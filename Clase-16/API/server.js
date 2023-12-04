@@ -14,3 +14,4 @@ server.use("",require("./alumnos/routesAlumnos"));
 server.listen(port,()=>{
     console.log("Server corriendo en el puerto "+ port)
 });
+

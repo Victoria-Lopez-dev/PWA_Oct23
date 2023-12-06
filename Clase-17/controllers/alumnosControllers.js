@@ -7,13 +7,38 @@ const saludo=(req,res)=>{
     res.send("hola")
 }
 
+const buscarAlumno=(req,res)=>{
+    let id=req.params.id;
+
+    dbConnection.query('SELECT * FROM alumnos WHERE id=?',[id],async (err,data)=>{
+        //mandar la respuesta
+        if(err){
+            res.status(500).json({'mensaje':err})
+        }else{
+            res.send(data)
+        }
+    })
+}
 const recibirInfo=(req,res)=>{
-    let {nombre,apellido}= req.body;//info del body
-    let imagen=req.file;//informacion (imagen) que viene en la peticion 
-    console.log(imagen)
-    console.log(req.file.path)//nombre actual del documento
+    let {id}= req.body;//info del body
+
+    let imagen="http://localhost:4000/"+req.file.path;//ruteo a donde se encuentra almacenada la imagen
+
+    //req.file.path; ->informacion (imagen) que viene en la peticion //informacion (imagen) que viene en la peticion 
+    console.log(req.file)
+    console.log(imagen)//nombre actual del documento
     //comandos de la DB la carga de dichos datos //como texto plano con la ruta de la imagen
-    res.send("info recibida")
+
+
+    dbConnection.query('UPDATE alumnos SET imagenes=? WHERE id=?',[imagen,id],(err,data)=>{
+        if(err){
+            res.send(500).json({"mensaje":"Error en server"})
+        }else{
+            console.log(data)
+             res.send("info recibida ")
+        }
+    });
+   
 }
 
 const cargarAlumno=async(req,res)=>{
@@ -58,6 +83,8 @@ const compararPassword=(req,res)=>{
         if(err){
             res.status(500).json({'mensaje':err})
         }else{
+            //por esta parte ingresa ya sea que encuentre o no al alumno con dicho id 
+
             //comparar la info recibida con la de la DB
             //enviar respuesta 
             let dataDB=data[0].password//de toda la data recibida de la DB , busco el valos de la password
@@ -75,7 +102,7 @@ const compararPassword=(req,res)=>{
     
    
 }
-module.exports={saludo,recibirInfo,cargarAlumno,compararPassword}
+module.exports={saludo,recibirInfo,cargarAlumno,compararPassword,buscarAlumno}
 
 //dos metodos bcrypt 
 //-> hash(dato,salt)-> encriptar info |

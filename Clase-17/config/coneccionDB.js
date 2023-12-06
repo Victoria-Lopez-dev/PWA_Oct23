@@ -1,8 +1,10 @@
 const mysql2=require('mysql2');
+require("dotenv").config();
+
 const infoDB={
-    host:'localhost',
-    user:'root',
-    database:'clase-15',
+    host:process.env.HOST,
+    user:process.env.HOST_NAME,
+    database:process.env.HOST_DB,
 }
 const dbConnection=mysql2.createConnection(infoDB);
 

@@ -45,6 +45,7 @@ const cargarAlumno=async(req,res)=>{
     //recibir la info de la peticion
     let {nombre,apellido,edad,password}=req.body;
 
+    let imagen="http://localhost:4000/"+req.file.path;
     // encriptar la constraseña
 
     let passwordEncriptada= await bcrypt.hash(password,10); // -> sin manejar los errores posibles;
@@ -56,10 +57,10 @@ const cargarAlumno=async(req,res)=>{
     //         return hash
     //     }
     // })
-    console.log(passwordEncriptada)
+    //console.log(passwordEncriptada)
     //mandar a la DB
 
-    dbConnection.query('INSERT INTO alumnos(nombre,apellido,edad,password) VALUES(?,?,?,?)',[nombre,apellido,edad,passwordEncriptada],(err,data)=>{
+    dbConnection.query('INSERT INTO alumnos(nombre,apellido,edad,password,imagenes) VALUES(?,?,?,?,?)',[nombre,apellido,edad,passwordEncriptada,imagen],(err,data)=>{
        
         //mandar la respuesta
         if(err){

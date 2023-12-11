@@ -3,8 +3,9 @@ require("dotenv").config();
 
 const infoDB={
     host:process.env.HOST,
-    user:process.env.HOST_NAME,
+    user:process.env.HOST_USER,
     database:process.env.HOST_DB,
+    password:process.env.HOST_PASS//agregamos el campo de la password
 }
 const dbConnection=mysql2.createConnection(infoDB);
 

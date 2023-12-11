@@ -1,12 +1,16 @@
+require("dotenv").config();
 const mongoose= require("mongoose");
 
-const host="127.0.0.1:27017";
-const database='lugar-comidas';
+// const host="127.0.0.1:27017";
+// const database='lugar-comidas';
+
+const user=process.env.USER//proyectoPlatos
+const pass=process.env.PASS
 
 //mongoose connect()
 
 const main=async()=>{
-  await  mongoose.connect(`mongodb://${host}/${database}`);
+  await  mongoose.connect(`mongodb+srv://proyectoPlatos:${pass}@cluster0.omdwmip.mongodb.net/?retryWrites=true&w=majority`);
 }
 
 main().then(()=>{

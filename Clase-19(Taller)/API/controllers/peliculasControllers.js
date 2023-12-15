@@ -2,7 +2,6 @@ const dbConnection= require("../config/db");//traemos la coneccion hecha para ut
 
 //traer todas las peliculas
 const mostrarPelis=(req,res)=>{
-
     //usando DB MySQL
     dbConnection.query("SELECT * FROM peliculas",(err,data)=>{
         if(data){
@@ -31,13 +30,15 @@ const cargarNuevaPelicula=(req,res)=>{
     })
 }
 
-//editar pelicula
 
 
 
 //eliminar pelicula
 const eliminarPelicula=(req,res)=>{
+    
     const{id}=req.body;
+
+
        //usando DB MySQL
        dbConnection.query("DELETE FROM peliculas WHERE id=?",[id],(err,data)=>{
         if(data){
@@ -47,7 +48,7 @@ const eliminarPelicula=(req,res)=>{
         }
        })
 
-    res.status(200).json({"message":"pelicula eliminada"})
+   // res.status(200).json({"message":"pelicula eliminada"})
 }
 
 const modificarPelicula=(req,res)=>{

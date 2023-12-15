@@ -9,8 +9,9 @@ const routes=require("./routes/peliculasRoutes")
 require("./config/db");
 
 //middlewares
-server.use(express.json());
 server.use(cors());//conflicto de cruce de puertos(seguridad de llamado a info desde otro puerto)
+
+server.use(express.json());
 server.use(express.urlencoded({extended:true}));// procesar datos enviados a la api que fueron enviarmos por medio de formularios(ver lo enviado por el body convierte en un formato utilizable)
 
 

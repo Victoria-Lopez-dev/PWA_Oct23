@@ -36,7 +36,6 @@ const cargarNuevaPelicula=(req,res)=>{
 //eliminar pelicula
 const eliminarPelicula=(req,res)=>{
     const idParams=req.params.id;
-    console.log(idParams)
     const{id}=req.body;
 
 
@@ -53,9 +52,11 @@ const eliminarPelicula=(req,res)=>{
 }
 
 const modificarPelicula=(req,res)=>{
+    
     const id=req.params.id;//obtengo la referencia de los params;
     const{titulo,genero,duracion,tickets}=req.body;//recibir info del body
 
+    console.log(req.body)
 // const {campo,valor}=req.body
 //"UPDATE peliculas SET ?=? WHERE id=?",[campo,valor,id]
 

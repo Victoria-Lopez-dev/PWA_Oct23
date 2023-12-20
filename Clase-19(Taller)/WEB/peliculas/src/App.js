@@ -28,7 +28,7 @@ function App() {
     {mostrarPelis? 
       <section className='container d-flex flex-column align-items-center'>
         <button className='btn btn-info row align-self-end' onClick={()=>setMostrarPelis(false)}>X</button>
-          <SeccionTarjetas/>
+          <SeccionTarjetas setMostrarForm={setMostrarForm} setMostrarPelis={setMostrarPelis}/>
       </section>
     :''}
 

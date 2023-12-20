@@ -3,7 +3,7 @@ import { useState ,useEffect, Fragment} from 'react';
 import Tarjeta from '../Tarjeta/Tarjeta';
 
 
-export default function SeccionTarjetas() {
+export default function SeccionTarjetas({setMostrarPelis,setMostrarForm}) {
     const [peliculas,setPeliculas]=useState([]);
     const[peliEliminada,setPeliEliminada]=useState(false);
     const[peliEliminadaID,setPeliEliminadaID]=useState('');
@@ -44,7 +44,7 @@ export default function SeccionTarjetas() {
             {peliEliminada === false? 
                 <div className="row gap-3">
                     {peliculas.map((peli)=>{
-                        return  <Tarjeta key={peli.id} data={peli} setPeliEliminada={setPeliEliminada} setPeliEliminadaID={setPeliEliminadaID}/>})
+                        return  <Tarjeta key={peli.id} data={peli} setPeliEliminada={setPeliEliminada} setPeliEliminadaID={setPeliEliminadaID} setMostrarPelis={setMostrarPelis} setMostrarForm={setMostrarForm}/>})
                     }
                 </div>:
                 <p className='alert-success text-white text-center'> PELICULA ELIMINADA!!</p>//mensaje que aparece por 2segundos cuando se elimina la imagen

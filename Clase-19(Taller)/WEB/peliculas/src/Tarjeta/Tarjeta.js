@@ -1,8 +1,9 @@
 import './Tarjeta.css'
 
-export default function Tarjeta({data,setPeliEliminada,setPeliEliminadaID}) {
+export default function Tarjeta({data,setPeliEliminada,setPeliEliminadaID,setMostrarPelis,setMostrarForm}) {
     //data tiene el objeto con toda la info de la pelicula
 
+    //console.log(data)// vemos que la data esta en este componenete como un objeto
 
     const elimiarPelicula= async()=>{
         let id=data.id //obtengo el id de la tarjeta
@@ -32,7 +33,17 @@ export default function Tarjeta({data,setPeliEliminada,setPeliEliminadaID}) {
        return respuesta
     }
 
+    const editarPelicula=()=>{
+        //web storage para guardar la info de la peli en el browser y obtenerla desde el componente del formulario
 
+        localStorage.setItem("infoTarjeta",JSON.stringify(data))//metodo para guardar en el browser info
+        //metodo setItem("nombreKey","data") -> solo guarda string entonces como data es un objeto lo transformo a JSON 
+
+
+        //para ocultar la seccion de  peliculas y muestra la seccion del formulario
+        setMostrarPelis(false)
+        setMostrarForm(true)
+    }
     return(
         <div className='bg-secondary card col-sm-4'>
             <div className="card-body text-light d-flex flex-column gap-3">
@@ -52,7 +63,7 @@ export default function Tarjeta({data,setPeliEliminada,setPeliEliminadaID}) {
                 </ul>
                 <div className='d-flex  gap-2'>
                     <button className='btn btn-danger border-0' onClick={elimiarPelicula}>Eliminar pelicula</button>
-                    <button className='btn btn-info border-0'>Editar pelicula</button>                
+                    <button className='btn btn-info border-0' onClick={editarPelicula}>Editar pelicula</button>                
                 </div>
 
             </div>

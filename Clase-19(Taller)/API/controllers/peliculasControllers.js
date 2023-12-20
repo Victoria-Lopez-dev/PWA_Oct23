@@ -35,7 +35,8 @@ const cargarNuevaPelicula=(req,res)=>{
 
 //eliminar pelicula
 const eliminarPelicula=(req,res)=>{
-    
+    const idParams=req.params.id;
+    console.log(idParams)
     const{id}=req.body;
 
 

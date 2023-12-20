@@ -1,8 +1,29 @@
 
 
 export default function SeccionFormulario() {
+
+const cargarPelicula=async(e)=>{
+    e.preventDefault();
+    const formInfo=new FormData(e.target)//obtengo la info del formulario
+    const poster=e.target[4].value
+
+    formInfo.append("imagen",poster)//agregar la file adjunto a la info del formulario (para solucionar el problema de los boundary del content-type multipart/form-data)
+    //headers:{"Content-Type":"multipart/form-data boundary=---MyBoundryes"},
+
+    let respuesta=await fetch("http://localhost:4300/cargarPeli",{
+        method:"post",
+        body:formInfo
+    })
+    .then((resp)=>{return resp.json})//transforma la info recibida de la API
+    .then((data)=>console.log(data))//la mostramos por la consola
+    .catch((err)=>console.log(err))
+
+    //if(respuesta){...}
+
+}
+
 return(
-   <form>
+   <form onSubmit={(event)=>cargarPelicula(event)}>
         <label className="form-label mt-3" htmlFor="titulo">Titulo de la pelicula</label>
         <input type="text" className="form-control" id="titulo" name="titulo"/>
 

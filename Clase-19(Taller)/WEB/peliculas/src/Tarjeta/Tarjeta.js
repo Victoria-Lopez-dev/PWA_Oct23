@@ -1,13 +1,14 @@
 import './Tarjeta.css'
 
-export default function Tarjeta({data,setPeliEliminada}) {
+export default function Tarjeta({data,setPeliEliminada,setPeliEliminadaID}) {
     //data tiene el objeto con toda la info de la pelicula
 
 
     const elimiarPelicula= async()=>{
         let id=data.id //obtengo el id de la tarjeta
         //sin el segundo parametro del fetch, hace la peticion GET por defecto
-      let respuesta= await fetch("http://localhost:4300/eliminarPelicula",{
+        
+      let respuesta= await fetch(`http://localhost:4300/eliminarPelicula`,{
             method:'delete',
             headers:{
                 'Content-Type':"application/json"
@@ -17,6 +18,7 @@ export default function Tarjeta({data,setPeliEliminada}) {
         .then((data)=>{return data.json()})
         .then(()=>{
             setPeliEliminada(true); 
+            setPeliEliminadaID(id)
             setTimeout(()=>{setPeliEliminada(false)},2000)//agergamos de que cambie este estado en 2segundos(para que muestre el mensaje de borrado solo ese tiempo en el componente padre : SeccionTarjetas)
         })
         .catch((err)=>console.log(err));

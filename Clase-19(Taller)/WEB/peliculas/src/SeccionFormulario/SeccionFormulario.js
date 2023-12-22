@@ -9,7 +9,7 @@ export default function SeccionFormulario() {
 
 
 const cargarPelicula=async(e)=>{
-    e.preventDefault();
+    e.preventDefault();//sacamos su accion por defecto 
 
     let idPeli='';
    let objetoFetch={};
@@ -38,13 +38,13 @@ const cargarPelicula=async(e)=>{
    
     let respuesta=await fetch(`http://localhost:4300/cargarPeli/${idPeli}`,objetoFetch)
     .then((resp)=>{return resp.json})//transforma la info recibida de la API
-    .then((data)=>{console.log(data); 
+    .then((data)=>{
+        console.log(data) 
         setOpOk(true)
         setTimeout(()=>{setOpOk(false)},2000)
         if(metodo ==="put"){
             localStorage.removeItem("infoTarjeta")
         }
-
         setFormData({})
     })//la mostramos por la consola
     .catch((err)=>console.log(err))

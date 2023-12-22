@@ -1,37 +1,52 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 
 export default function SeccionFormulario() {
 
     const[metodo,setMetodo]=useState("");
-    const[formData,setFormData]=useState({})
+    const[formData,setFormData]=useState({});
+    const [opOk,setOpOk]=useState(false)
+
 
 const cargarPelicula=async(e)=>{
     e.preventDefault();
 
     let idPeli='';
-    let formInfo='';
-    console.log(metodo)
+   let objetoFetch={};
+
     if(metodo === "post"){
-        formInfo=new FormData(e.target)//obtengo la info del formulario
+        let formInfo=new FormData(e.target)//obtengo la info del formulario
         const poster=e.target[4].value
         formInfo.append("imagen",poster)//agregar la file adjunto a la info del formulario (para solucionar el problema de los boundary del content-type multipart/form-data)
     //headers:{"Content-Type":"multipart/form-data boundary=---MyBoundryes"},
-        
-    }else{
-        formInfo=JSON.stringify(formData)
+        objetoFetch={
+            method:metodo,
+            body:formInfo
+        }
+    }
+    if(metodo === "put"){
+       let formInfo=JSON.stringify(formData)
         idPeli=formData.id
         console.log(formInfo)
+        //en el fetch va a necesitar que cambiemos los headers 
+        objetoFetch={
+            method:metodo,
+            headers:{"Content-Type":'application/json'},
+            body:formInfo
+        }
     }
    
-    let respuesta=await fetch(`http://localhost:4300/cargarPeli/${idPeli}`,{
-        method:metodo,
-        body:formInfo
-    })
+    let respuesta=await fetch(`http://localhost:4300/cargarPeli/${idPeli}`,objetoFetch)
     .then((resp)=>{return resp.json})//transforma la info recibida de la API
     .then((data)=>{console.log(data); 
-        if(metodo =="put"){localStorage.removeItem("infoTarjeta")}
-        })//la mostramos por la consola
+        setOpOk(true)
+        setTimeout(()=>{setOpOk(false)},2000)
+        if(metodo ==="put"){
+            localStorage.removeItem("infoTarjeta")
+        }
+
+        setFormData({})
+    })//la mostramos por la consola
     .catch((err)=>console.log(err))
 
     //if(respuesta){...}
@@ -60,33 +75,38 @@ useEffect(()=>{
     
 
 },[])//apenas se renderize el componente del formulario
+
 return(
-   <form onSubmit={(event)=>cargarPelicula(event)}>
-        <label className="form-label mt-3" htmlFor="titulo">Titulo de la pelicula</label>
-        <input type="text" className="form-control" id="titulo" name="titulo" value={formData.titulo} onChange={(event)=>cambioValor(event)}/>
+    <Fragment>
+    {opOk ==false?
+        <form onSubmit={(event)=>cargarPelicula(event)}>
+                <label className="form-label mt-3" htmlFor="titulo">Titulo de la pelicula</label>
+                <input type="text" className="form-control" id="titulo" name="titulo" value={formData.titulo} onChange={(event)=>cambioValor(event)}/>
 
-        <label className="form-label mt-3" htmlFor="genero">Genero del a pelicula</label>
-        <select className="form-select" id="genero" name="genero" value={formData.genero} onChange={(event)=>cambioValor(event)}>
-            <option value="Documental">Documental</option>
-            <option value="Aventura"> Aventura</option>
-            <option value="Accion">Accion</option>
-            <option value="Drama">Drama</option>
-            <option value="Comedia">Comedia</option>
-            <option value="Animacion">Animacion</option>
-        </select>
+                <label className="form-label mt-3" htmlFor="genero">Genero del a pelicula</label>
+                <select className="form-select" id="genero" name="genero" value={formData.genero} onChange={(event)=>cambioValor(event)}>
+                    <option value="Documental">Documental</option>
+                    <option value="Aventura"> Aventura</option>
+                    <option value="Accion">Accion</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Animacion">Animacion</option>
+                </select>
 
-        <label className="form-label mt-3" htmlFor="duracion">Duracion de la pelicula</label>
-        <input type="text" className="form-control" id="duracion" name="duracion" value={formData.duracion} onChange={(event)=>cambioValor(event)}/>
+                <label className="form-label mt-3" htmlFor="duracion">Duracion de la pelicula</label>
+                <input type="text" className="form-control" id="duracion" name="duracion" value={formData.duracion} onChange={(event)=>cambioValor(event)}/>
 
-        <label className="form-label mt-3" htmlFor="tickets" >Cantidad de tickets disponibles</label>
-        <input type="text" className="form-control" id="tickets" name="tickets" value={formData.tickets} onChange={(event)=>cambioValor(event)}/>
-        
-        <label className="form-label mt-3" htmlFor="poster">Poster de la pelicula</label>
-        <input className="ms-2" type="file" id="poster" name="imagen" />
+                <label className="form-label mt-3" htmlFor="tickets" >Cantidad de tickets disponibles</label>
+                <input type="text" className="form-control" id="tickets" name="tickets" value={formData.tickets} onChange={(event)=>cambioValor(event)}/>
+                
+                <label className="form-label mt-3" htmlFor="poster">Poster de la pelicula</label>
+                <input className="ms-2" type="file" id="poster" name="imagen" />
 
-        <input className="btn btn-success d-block" type="submit"  value={"Cargar"}/>
+                <input className="btn btn-success d-block" type="submit"  value={"Cargar"}/>
 
-   </form>
+        </form>:
+    <p className="alert-success p-2 text-dark">Accion realizada con exito!!</p>}
+   </Fragment>
 )
 
 }

@@ -10,7 +10,7 @@ export default function SeccionTarjetas({setMostrarPelis,setMostrarForm}) {
 
     //console.log(peliculas) -> vemos el estado peliculas
     const traerInfo=async()=>{
-        let info=  await fetch("http://localhost:4300/todasLasPeliculas")
+        let info=  await fetch("https://api-peliculas-6oge.onrender.com/todasLasPeliculas")
             .then((data)=>{return data.json()})
             .then((resp)=>{setPeliculas(resp)})//setteamos la info de la DB en la variable peliculas
             .catch((error)=>{console.log(error)})

@@ -36,7 +36,7 @@ const cargarPelicula=async(e)=>{
         }
     }
    
-    let respuesta=await fetch(`http://localhost:4300/cargarPeli/${idPeli}`,objetoFetch)
+    let respuesta=await fetch(`https://api-peliculas-6oge.onrender.com/cargarPeli/${idPeli}`,objetoFetch)
     .then((resp)=>{return resp.json})//transforma la info recibida de la API
     .then((data)=>{
         console.log(data) 

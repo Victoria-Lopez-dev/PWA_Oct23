@@ -1,0 +1,156 @@
+[{
+  "_id": {
+    "$oid": "64525ecd5a8798abd412ba98"
+  },
+  "nombrePlato": "{hola:\"ensalada\"}",
+  "precio": 2000,
+  "stock": 18,
+  "categoria": "hamburguesas"
+},
+{
+  "_id": {
+    "$oid": "64525f39b6a6a0cd533f6230"
+  },
+  "precio": 2000,
+  "stock": 20,
+  "categoria": "ensaladas"
+},
+{
+  "_id": {
+    "$oid": "64525f40c64d01ed34f86636"
+  },
+  "precio": 2000,
+  "stock": 20,
+  "categoria": "ensaladas"
+},
+{
+  "_id": {
+    "$oid": "64525f541de2bee56ab27bb5"
+  },
+  "nombrePlato": "ensalada cesar",
+  "precio": 2000,
+  "stock": 20,
+  "categoria": "ensaladas"
+},
+{
+  "_id": {
+    "$oid": "645260322a7b812c3b1c13ab"
+  },
+  "nombrePlato": "hamburguesa completa",
+  "precio": 3500,
+  "stock": 15,
+  "categoria": "hamburguesas"
+},
+{
+  "_id": {
+    "$oid": "64526077b3e29700c7816b2f"
+  },
+  "nombrePlato": "hamburguesa completa",
+  "precio": 3500,
+  "stock": 15,
+  "categoria": "hamburguesas"
+},
+{
+  "_id": {
+    "$oid": "6452613a75cc710547e9266c"
+  },
+  "nombrePlato": "pizza napolitana",
+  "precio": 5100,
+  "stock": 23,
+  "categoria": "pizzas"
+},
+{
+  "_id": {
+    "$oid": "6452613a75cc710547e9266d"
+  },
+  "nombrePlato": "empanada de carne",
+  "precio": 350,
+  "stock": 100,
+  "categoria": "empanadas"
+},
+{
+  "_id": {
+    "$oid": "6458f4460d323412a46f19c8"
+  },
+  "nombrePlato": "pizza cebolla",
+  "precio": 2250,
+  "stock": 5,
+  "categoria": "pizzas"
+},
+{
+  "_id": {
+    "$oid": "6458f4baa55e96b0290400c8"
+  },
+  "nombrePlato": "pizza cebolla",
+  "precio": 2250,
+  "stock": 5,
+  "categoria": "pizzas"
+},
+{
+  "_id": {
+    "$oid": "654b78139f36a2462c9e895a"
+  },
+  "hola": "plato"
+},
+{
+  "_id": {
+    "$oid": "654b783b9f36a2462c9e895b"
+  },
+  "hola": {
+    "dato": "plato"
+  }
+},
+{
+  "_id": {
+    "$oid": "655e1603dd2af2580df52300"
+  }
+},
+{
+  "_id": {
+    "$oid": "655e1684cc40a1b4b6845288"
+  }
+},
+{
+  "_id": {
+    "$oid": "655e170bb8d3120d2fae51bd"
+  }
+},
+{
+  "_id": {
+    "$oid": "655e174b5b4393c59ba7c0fa"
+  }
+},
+{
+  "_id": {
+    "$oid": "655e1786f4c56f47729123a2"
+  }
+},
+{
+  "_id": {
+    "$oid": "655e17fde84057273f8f0bb2"
+  }
+},
+{
+  "_id": {
+    "$oid": "655e1850e84057273f8f0bb4"
+  },
+  "nombrePlato": "ensalada tomate"
+},
+{
+  "_id": {
+    "$oid": "655e1895e84057273f8f0bb7"
+  },
+  "nombrePlato": "ensalada tomate",
+  "precio": 1111,
+  "stock": 6,
+  "categoria": "ensaladas"
+},
+{
+  "_id": {
+    "$oid": "655e19bb46e181a6f86e0e9d"
+  },
+  "nombrePlato": "ensalada tomate",
+  "precio": 1111,
+  "stock": 6,
+  "categoria": "ensaladas"
+}]

@@ -1,4 +1,5 @@
 require('dotenv').config();
+//con DB SQL
 const mysql2 =require("mysql2");
 
 const dbInfo={
@@ -25,3 +26,23 @@ dbConnection.connect((error)=>{
     ;
 
 module.exports=dbConnection;
+
+//con MongoDB
+// const mongoose= require("mongoose");
+
+
+// const user=process.env.USER//proyectoPlatos
+// const pass=process.env.PASS
+
+// //mongoose connect()
+
+// const main=async()=>{
+//   await  mongoose.connect(`mongodb+srv://proyectoPlatos:${pass}@cluster0.omdwmip.mongodb.net/?retryWrites=true&w=majority`);
+// }
+
+// main().then(()=>{
+//     console.log("coneccion exitosa a DB MongoDB")
+// })
+// .catch((error)=>{
+//     console.log(error)
+// })

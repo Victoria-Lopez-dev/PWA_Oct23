@@ -20,6 +20,7 @@ server.use('/imagen',express.static("./imagenes"));//indicar el endpoint a donde
 //vincular los routes
 server.use('',routes)// http://localhost:4300 -> redirige a las peticiones del documento routes/peliculasRoutes.js
 
+
 server.listen(port,()=>{
     console.log("Server corriendo en puerto "+ port)
 });

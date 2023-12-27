@@ -1,33 +1,63 @@
 const dbConnection= require("../config/db");//traemos la coneccion hecha para utilizar el metodo query
 
+//let modelo= require("../schema/shemaPeliculas");
+
 //traer todas las peliculas
-const mostrarPelis=(req,res)=>{
+const mostrarPelis= async(req,res)=>{
     //usando DB MySQL
-    dbConnection.query("SELECT * FROM peliculas",(err,data)=>{
-        if(data){
-            res.status(200).send(data) 
-        }else{
-            console.log(err)
-        }
+    // dbConnection.query("SELECT * FROM peliculas",(err,data)=>{
+    //     if(data){
+    //         res.status(200).send(data) 
+    //     }else{
+    //         console.log(err)
+    //     }
        
-    });
+    // });
+
+    //usando DB MongoDB
+
+    let resultado= await modelo.find();
+    if(resultado){
+        res.status(200).send(resultado) 
+    }else{
+        res.status(500)
+    }
 
     
 };
 
 //cargar pelicula
-const cargarNuevaPelicula=(req,res)=>{
+const cargarNuevaPelicula=async (req,res)=>{
     const{titulo,genero,duracion,tickets}=req.body;//recibir info del body
     const imagen="http://localhost:4300/imagen/" +req.file.filename;//recibiendo info que viene en el campo de tipo file
 
      //usando DB MySQL
-    dbConnection.query("INSERT INTO peliculas(titulo, genero, duracion, tickets, imagen)VALUES(?,?,?,?,?)",[titulo, genero, duracion, tickets, imagen],(err,data)=>{
-        if(data){
-            res.status(201).json({"message":"pelicula cargada"})
-        }else{
-            res.status(500).json({"message":"error en carga "})
-        }
+    // dbConnection.query("INSERT INTO peliculas(titulo, genero, duracion, tickets, imagen)VALUES(?,?,?,?,?)",[titulo, genero, duracion, tickets, imagen],(err,data)=>{
+    //     if(data){
+    //         res.status(201).json({"message":"pelicula cargada"})
+    //     }else{
+    //         res.status(500).json({"message":"error en carga "})
+    //     }
+    // })
+
+    //con MongoDB
+
+    //le colocamos el async a la funcion 
+    let nuevaPelicula= new modelo({
+        titulo:titulo,
+        genero:genero,
+        duracion:duracion,
+        tickets:tickets,
+        imagen:imagen
     })
+    let resultado= await modelo.collection.insertOne(nuevaPelicula);//mandamos a cargar el plato a la DB
+
+    if(resultado){
+        res.status(201).json({"id_pELICULA":resultado.insertedId})
+    }else{
+        res.send("error en el ingreso de la nueva pelicula...")
+    }
+
 }
 
 
